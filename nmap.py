@@ -22,7 +22,7 @@ for i in my_ip:
             break
 
 nmap = nmap3.Nmap()
-for i in range(100, 110):
+for i in range(200, 256):
     for_loop1 = for_loop + str(i)
     os_results = nmap.nmap_os_detection(for_loop1)
     
