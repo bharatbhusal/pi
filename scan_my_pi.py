@@ -1,7 +1,6 @@
 import nmap3
 import os
 
-
 def get_sentence():
     write = 'ip route | grep / > out_file.txt'
     os.system(write)
