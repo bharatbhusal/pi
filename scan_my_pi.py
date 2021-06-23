@@ -1,12 +1,15 @@
 import nmap3
 import os
 
+
 def get_sentence():
-    write = 'ip route | grep / > out_file.txt'
+    write = "ip route |grep 'dev wlan0 proto kernel' > out_file.txt"
     os.system(write)
+
 
 def convert(lst):
     return (lst[:].split())
+
 
 def get_address(numb1, numb2):
     global subnet, my_ip
@@ -15,6 +18,7 @@ def get_address(numb1, numb2):
         get_address.subnet = convert(contents)[numb1]
         get_address.my_ip = convert(contents)[numb2]
         os.remove("out_file.txt")
+
 
 def comman_in_ip():
     global for_loop
@@ -28,15 +32,19 @@ def comman_in_ip():
                 break
     comman_in_ip.for_loop = for_loop
 
+
 def ip_mac():
-    print(f"The IP address of your Raspberry pi for this network is {os_scan.for_loop1}")
+    print(
+        f"The IP address of your Raspberry pi for this network is {os_scan.for_loop1}")
     print(f"The MAC address of your Raspberry pi is {os_scan.mac}\n")
     os.system(f"ssh pi@{os_scan.for_loop1}")
+
 
 def os_scan():
     global for_loop1, os_results, mac
     nmap = nmap3.Nmap()
-    for i in range(100, 110):
+    r1, r2 = 100, 110
+    for i in range(r1, r2):
         os_scan.for_loop1 = comman_in_ip.for_loop + str(i)
         os_scan.os_results = nmap.nmap_os_detection(os_scan.for_loop1)
         if "error" in os_scan.os_results:
@@ -51,6 +59,7 @@ def os_scan():
         if os_scan.mac == "DC:A6:32:F2:19:BE":
             ip_mac()
             break
+
 
 get_sentence()
 get_address(0, 8)
